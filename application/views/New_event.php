@@ -23,7 +23,7 @@
     <?php
     echo '<label><font color="red">' . validation_errors() . '</font></label>';
     ?>
-    <div><input type="submit" value="Publish" class="btn btn-default"/></div>
+    <div><input type="submit" value="Save" class="btn btn-default"/></div>
 </form>
 </div>
 <script>

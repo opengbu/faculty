@@ -47,7 +47,7 @@
             }
 
             #getFixed {
-                width: 231px;
+                width: 234px;
             }
         </style>
         <script>
@@ -138,12 +138,17 @@
 
 
                             <li ><a href="<?= base_url() . 'my_info' ?>">My information <i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tasks fa-2x"></i></a></li>
-                            <li ><a href="<?= base_url() . 'edit_info' ?>">Edit Info<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-plus-square fa-2x"></i></a></li>
-                            <li ><a href="<?= base_url() . 'new_event' ?>">Add Event <i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tasks fa-2x"></i></a></li>
-                            <li ><a href="<?= base_url() . 'all_events' ?>">All Events<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-plus-square fa-2x"></i></a></li>
-                            <li ><a href="<?= base_url() . 'new_colleague' ?>">New Colloeague <i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tasks fa-2x"></i></a></li>
-                            <li ><a href="<?= base_url() . 'all_colleagues' ?>">All Colleagues<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-plus-square fa-2x"></i></a></li>
+                            <li ><a href="<?= base_url() . 'new_event' ?>">Add Event <i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-plus-square fa-2x"></i></a></li>
+                            <li ><a href="<?= base_url() . 'all_events' ?>">View Events<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tasks fa-2x"></i></a></li>
+                            <li ><a href="<?= base_url() . 'new_colleague' ?>">Add Post Doctorate fellow <i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-plus-square fa-2x"></i></a></li>
+                            <li ><a href="<?= base_url() . 'all_colleagues' ?>">Post Doctorate fellows<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tasks fa-2x"></i></a></li>
+                            <li ><a href="<?= base_url() . 'new_conference' ?>">Add Conference Organized<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-plus-square fa-2x"></i></a></li>
+                            <li ><a href="<?= base_url() . 'all_conferences' ?>">Organized Conferences<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tasks fa-2x"></i></a></li>
 
+                            <li ><a href="<?= base_url() . 'new_consultancy' ?>">Add Consultancy Project<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-plus-square fa-2x"></i></a></li>
+                            <li ><a href="<?= base_url() . 'all_consultancy' ?>">Consultancy Projects<i style="font-size:16px;" class="pull-right hidden-xs showopacity fa fa-tasks fa-2x"></i></a></li>
+
+                            
                         </ul>
                     </div>
 

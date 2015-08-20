@@ -6,6 +6,8 @@
 ?>
 <div class ="col-sm-10">
     <?php
+    error_reporting(E_ERROR);
+
     $fac_id = $this->session->userdata('fac_id');
     $count = 0;
     $query = $this->db->query("select * from events where fac_id = '$fac_id'");

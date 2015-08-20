@@ -8,9 +8,16 @@
 
 class Login extends CI_Controller {
 
+    function index() {
+        if ($this->session->userdata('loggedin') == 1)
+            redirect('edit_info');
+        echo 'invalid link, please use link sent to you in mail for login';
+        return;
+    }
+
     function using_email() {
         if ($this->session->userdata('loggedin') == 1)
-            redirect('my_info');
+            redirect('edit_info');
         $code = $this->input->get('code');
         if ($code == NULL || $code == "") {
             echo 'invalid link';

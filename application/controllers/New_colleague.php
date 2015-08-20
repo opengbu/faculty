@@ -15,10 +15,7 @@ class New_colleague extends CI_Controller {
         }
 
         $this->load->helper(array('form', 'url'));
-        $this->form_validation->set_rules('c_name', 'Event name', 'required');
-        $this->form_validation->set_rules('position', 'position', 'required');
-        $this->form_validation->set_rules('school_id', 'School name', 'required');
-        $this->form_validation->set_rules('dept_id', 'Department name', 'required');
+        $this->form_validation->set_rules('c_name', 'Colleague name', 'required');
 
 
         $this->load->view('common/header');

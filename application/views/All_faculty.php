@@ -143,7 +143,7 @@
 
         <?php
     } else {
-        echo "<b>Nothing to Display, please select appropriate Program and Semester to view details</b>";
+        echo "<b>Nothing to Display, please select appropriate School and Department to view details</b>";
     }
     ?>
     <br>
@@ -159,8 +159,6 @@
             url: frm.attr('action'),
             data: frm.serialize(),
             success: function (msg) {
-                if (document.getElementById("record_list") === null)
-                    window.location.reload();
                 var obj = JSON.parse(msg);
                 var error_list = document.getElementById('insert_errors');
                 if (obj.result === "error")
@@ -169,6 +167,11 @@
                 }
                 if (obj.result === "success")
                 {
+                    
+                    alert('Your account has been Successfullt created. Login link sent to your email address');
+                    if (document.getElementById("record_list") === null)
+                        window.location.reload();
+
                     var record_list = document.getElementById('record_list');
                     var data = '<li class = "list-group-item" > \
                                     <div class = "row" > \
@@ -188,7 +191,6 @@
                                     </li>';
                     record_list.innerHTML = record_list.innerHTML + data;
                     error_list.innerHTML = ""; //Remove old errors
-
                 }
             }
         });

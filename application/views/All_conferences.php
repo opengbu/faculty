@@ -9,7 +9,7 @@ error_reporting(E_ERROR);
     <?php
     $fac_id = $this->session->userdata('fac_id');
     $count = 0;
-    $query = $this->db->query("select * from colleagues where fac_id = '$fac_id'");
+    $query = $this->db->query("select * from research_conferences where fac_id = '$fac_id'");
     ?>
 
     <ul class="nav nav-list col-sm-12">
@@ -20,16 +20,23 @@ error_reporting(E_ERROR);
                     <div class="col-sm-1">
                         S.N.
                     </div>
-                    <div class="col-sm-4">
-                        Colleague Name
+                    <div class="col-sm-2">
+                        Title of research Conference
                     </div>
-                    
+
                     <div class="col-sm-3">
-                        Sponsoring Agency
+                        School_department
+                    </div>
+                    <div class="col-sm-2">
+                        Funding Agency
+                    </div>
+
+                    <div class="col-sm-2">
+                        Other Details
                     </div>
                     
-                    <div class="col-sm-4">
-                        School & Department
+                    <div class="col-sm-2">
+                        Name of outstanding participants
                     </div>
                 </b>
             </div>
@@ -37,14 +44,13 @@ error_reporting(E_ERROR);
         <?php
         foreach ($query->result() as $row) {
             $count++;
-            
+
             $get_school_details = $this->db->query("select * from schools where id = '$row->school_id'");
             $school_details = $get_school_details->row();
-            
-            
+
+
             $dept_details_q = $this->db->query("select * from departments where id = '$row->department_id'");
             $dept_details = $dept_details_q->row();
-            
             ?>
             <li class="list-group-item">
                 <div class="row">
@@ -53,21 +59,32 @@ error_reporting(E_ERROR);
                         echo $count;
                         ?>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <?php
-                        echo $row->c_name;
+                        echo $row->title;
                         ?>
                     </div>
-                    
+
                     <div class="col-sm-3">
                         <?php
-                        echo $row->sponsors;
+                        echo $school_details->school_name . ' / ' . $dept_details->department;
+                        ?>
+                    </div>
+                    <div class="col-sm-2">
+                        <?php
+                        echo $row->funding_agency;
+                        ?>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <?php
+                        echo $row->other_details;
                         ?>
                     </div>
                     
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <?php
-                        echo $school_details->school_name. ' / ' . $dept_details->department;
+                        echo $row->participants;
                         ?>
                     </div>
                 </div>
@@ -75,4 +92,5 @@ error_reporting(E_ERROR);
             <?php
         }
         ?>
+    </ul>
 </div>

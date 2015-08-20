@@ -2,6 +2,8 @@
 $id = $this->session->userdata('fac_id');
 $fac_q = $this->db->query("select * from faculty where fac_id = '$id' ");
 $fac = $fac_q->row();
+error_reporting(E_ERROR);
+
 ?>
 
 
@@ -140,4 +142,7 @@ $fac = $fac_q->row();
         
         
     </ul>
+</div>
+<div class="col-sm-2">
+    <a href="<?=base_url('edit_info')?>" class="btn  btn-primary pull-right"> Edit </a>
 </div>

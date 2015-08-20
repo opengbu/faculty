@@ -12,11 +12,12 @@
     <label>Name of the post doctoral fellow working with you </label><br />
     <input type="text" class="form-control" name="c_name" value="<?php echo set_value('c_name'); ?>"/>
     <br />
-
+<!--
     <label>Position</label><br />
     <input type="text" class="form-control" name="position" value="<?php echo set_value('position'); ?>"/>
     <br />
-
+-->
+<input type="hidden" value="position" />
     <label>Sponsoring Agency </label><br />
     <input type="text" class="form-control" name="sponsors" value="<?php echo set_value('sponsors'); ?>"/>
     <br />
@@ -53,6 +54,6 @@
     <?php
     echo '<label><font color="red">' . validation_errors() . '</font></label>';
     ?>
-    <div><input type="submit" value="Publish" class="btn btn-default"/></div>
+    <div><input type="submit" value="Save" class="btn btn-default"/></div>
 </form>
 </div>
