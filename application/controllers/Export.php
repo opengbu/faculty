@@ -23,7 +23,6 @@ class Export extends CI_Controller {
         $this->load->view('blank');
         $this->load->view('All_consultancy');
         $this->load->view('common/footer_2');
-        $this->load->view('blank');
     }
 
 }

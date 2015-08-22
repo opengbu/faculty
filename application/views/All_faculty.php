@@ -1,10 +1,22 @@
+<?php
+if ($this->input->get('school_id') != NULL)
+    $school_id = $this->input->get('school_id');
+else
+    $school_id = "NULL";
+
+if ($this->input->get('dept_id') != NULL)
+    $dept_id = $this->input->get('dept_id');
+else
+    $dept_id = "NULL";
+?>
+
 <div class="col-sm-12">
     <br /><br />
     <div class="row">
         <form>
-            <div class="col-sm-5">
+            <div class="col-sm-4">
 
-                <select class="selectpicker" data-size="5" data-dropup-auto="false" data-live-search="true" onchange="this.form.submit()" name="school_id" data-width="90%">        
+                <select class="selectpicker" data-size="5" data-dropup-auto="false" data-live-search="true" onchange="this.form.submit()" name="school_id" data-width="100%">        
                     <option value="-1"> Select School </option>
                     <?php
                     $q = $this->db->query("select id, school_name from schools");
@@ -19,12 +31,12 @@
                 </select>   
             </div>
 
-            <div class=" col-sm-3">
+            <div class=" col-sm-4">
 
-                <select class="selectpicker" data-dropup-auto="false" data-size="5" data-live-search="true" onchange="this.form.submit()" name="dept_id" >        
+                <select class="selectpicker" data-dropup-auto="false" data-size="5" data-live-search="true" onchange="this.form.submit()" name="dept_id" data-width="100%">        
                     <option value="-1"> Select Department </option>
                     <?php
-                    $q = $this->db->query("select id, department from departments");
+                    $q = $this->db->query("select id, department from departments where school_id='$school_id'");
                     foreach ($q->result() as $row) {
                         ?>
                         <option value="<?= $row->id ?>" 
@@ -35,20 +47,14 @@
                             ?>
                 </select>   
             </div>
+
+            <div class="col-sm-1">
+                <a href="<?=base_url('Export_all?department_id=' . $dept_id)?>" class="btn btn-primary">Export</a>
+            </div>
         </form>
     </div>  
     <br /><br />
     <?php
-    if ($this->input->get('school_id') != NULL)
-        $school_id = $this->input->get('school_id');
-    else
-        $school_id = "NULL";
-
-    if ($this->input->get('dept_id') != NULL)
-        $dept_id = $this->input->get('dept_id');
-    else
-        $dept_id = "NULL";
-
     if ($school_id != "NULL" && $school_id != "NULL" && $dept_id != -1 && $dept_id != -1) { //insert code here
         ?>
         <div  id="viewop">
@@ -191,12 +197,12 @@
                                     ' + obj.email + ' \
                                     </div> \
                                     <div class = "col-sm-2" > \
-                                    ' + '<a href="export?fac_id='+obj.fac_id+'" class="btn btn-primary btn-xs"  >Export</a>' + ' \
+                                    ' + '<a href="export?fac_id=' + obj.fac_id + '" class="btn btn-primary btn-xs"  >Export</a>' + ' \
                                     </div> \
                                     </div> \
                                     </li>';
-            if(obj.readd_again == 1)
-                    record_list.innerHTML = record_list.innerHTML + data;
+                    if (obj.readd_again == 1)
+                        record_list.innerHTML = record_list.innerHTML + data;
                     error_list.innerHTML = ""; //Remove old errors
                 }
             }
