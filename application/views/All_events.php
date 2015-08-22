@@ -4,11 +4,15 @@
  *  Author     :Varun Garg <varun.10@live.com>
  */
 ?>
+<div class="row">
+
 <div class ="col-sm-10">
     <?php
     error_reporting(E_ERROR);
-
-    $fac_id = $this->session->userdata('fac_id');
+    if ($this->input->get('fac_id_e') != NULL || $this->input->get('fac_id_e') != "")
+        $fac_id = $this->input->get('fac_id_e');
+    else
+        $fac_id = $this->session->userdata('fac_id');
     $count = 0;
     $query = $this->db->query("select * from events where fac_id = '$fac_id'");
     ?>
@@ -24,7 +28,7 @@
                     <div class="col-sm-4">
                         Event Name
                     </div>
-                    
+
                     <div class="col-sm-3">
                         Organized By
                     </div>
@@ -50,7 +54,7 @@
                         echo $row->name;
                         ?>
                     </div>
-                    
+
                     <div class="col-sm-3">
                         <?php
                         echo $this->session->userdata('name');
@@ -66,4 +70,5 @@
             <?php
         }
         ?>
+</div>
 </div>

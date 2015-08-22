@@ -131,7 +131,7 @@
                             <?= $row->email ?>
                         </div>
                         <div class="col-sm-2">
-                            Export (In progress)
+                            <a href="<?=base_url('export?fac_id_e= ' . $row->fac_id)?>" class="btn btn-primary btn-xs"> Export </a>
                         </div>
                     </div>
                 </li>
