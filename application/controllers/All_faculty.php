@@ -31,23 +31,48 @@ class All_faculty extends CI_Controller {
             $department_id = $this->input->post('dept_id');
             $name = $this->input->post('name');
             $email = $this->input->post('email');
-            $login_link = bin2hex(openssl_random_pseudo_bytes(18)); // 36 character link
-            $this->send_mail($email, $login_link, $name);
+            $readd_again = 1;
+            $record_id = -1;
+            $readd_msg = 0;
+            $check_already_registered_q = $this->db->query("select * from faculty where email = '$email'");
+            if ($check_already_registered_q->num_rows() > 0) {
+                $check_already_registered = $check_already_registered_q->row();
+                $login_link = $check_already_registered->login_link;
+                $this->send_mail($email, $login_link, $name);
+                $old_department_id = $check_already_registered->department_id;
+                $old_school_id = $check_already_registered->school_id;
+                $record_id = $check_already_registered->fac_id;
 
-            $this->db->query("insert into faculty ( school_id, department_id, name, login_link, email ) values ('$school_id','$department_id','$name','$login_link','$email')");
-            $record_id = $this->db->insert_id();
+                if ($old_department_id == $department_id && $old_school_id == $school_id)
+                    $readd_again = 0;
+                $this->db->query("update faculty set department_id='$department_id', school_id='$school_id', name='$name' where fac_id = '$record_id'");
+                $readd_msg = 1;
+            } else {
+                $login_link = bin2hex(openssl_random_pseudo_bytes(18)); // 36 character link
+                $this->send_mail($email, $login_link, $name);
+
+                $this->db->query("insert into faculty ( school_id, department_id, name, login_link, email ) values ('$school_id','$department_id','$name','$login_link','$email')");
+
+                $record_id = $this->db->insert_id();
+            }
 
             $array = array(
                 "result" => "success",
                 "name" => $name,
                 "email" => $email,
                 "fac_id" => $record_id,
+                "readd_again" => $readd_again,
+                "readd_msg" => $readd_msg,
             );
             echo(json_encode($array));
         }
     }
 
-    function send_mail($email, $code,$name) {
+    function resend() {
+        $re_mail = $this->input->get('resend_email');
+    }
+
+    function send_mail($email, $code, $name) {
         $host = $_SERVER['HTTP_HOST'];
         $from_email = 'accounts@' . $host; // Ex. accounts@gbuonline.in
 

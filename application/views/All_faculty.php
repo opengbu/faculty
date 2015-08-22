@@ -79,8 +79,9 @@
         </div>
         <?php
     }
+    ?>
 
-
+    <?php
     $select_rows = "select fac_id, name, email from faculty where school_id = '" . $school_id . "' and department_id = " . $dept_id;
 
     $result = $this->db->query($select_rows);
@@ -131,7 +132,7 @@
                             <?= $row->email ?>
                         </div>
                         <div class="col-sm-2">
-                            <a href="<?=base_url('export?fac_id_e= ' . $row->fac_id)?>" class="btn btn-primary btn-xs"> Export </a>
+                            <a href="<?= base_url('export?fac_id_e= ' . $row->fac_id) ?>" class="btn btn-primary btn-xs"> Export </a>
                         </div>
                     </div>
                 </li>
@@ -167,8 +168,13 @@
                 }
                 if (obj.result === "success")
                 {
-                    
-                    alert('Your account has been Successfullt created. Login link sent to your email address');
+
+                    if (obj.readd_msg === 1)
+                    {
+                        alert('Your account was already created. Details are updated, and login link has been resent to your email account');
+                    }
+                    else
+                        alert('Your account has been Successfully created. Login link sent to your email account');
                     if (document.getElementById("record_list") === null)
                         window.location.reload();
 
@@ -185,10 +191,11 @@
                                     ' + obj.email + ' \
                                     </div> \
                                     <div class = "col-sm-2" > \
-                                    ' + 'Export (In progress)' + ' \
+                                    ' + '<a href="export?fac_id='+obj.fac_id+'" class="btn btn-primary btn-xs"  >Export</a>' + ' \
                                     </div> \
                                     </div> \
                                     </li>';
+            if(obj.readd_again == 1)
                     record_list.innerHTML = record_list.innerHTML + data;
                     error_list.innerHTML = ""; //Remove old errors
                 }
