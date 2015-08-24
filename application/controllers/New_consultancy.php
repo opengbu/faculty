@@ -25,10 +25,10 @@ class New_consultancy extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('New_consultancy');
         } else {
-            $area = $this->input->post('area');
-            $year = $this->input->post('year');
-            $name_of_firm = $this->input->post('name_of_firm');
-            $revenue = $this->input->post('revenue');
+            $area = htmlspecialchars($this->input->post('area'));
+            $year = htmlspecialchars($this->input->post('year'));
+            $name_of_firm = htmlspecialchars($this->input->post('name_of_firm'));
+            $revenue = htmlspecialchars($this->input->post('revenue'));
 
             $fac_id = $this->session->userdata('fac_id');
 

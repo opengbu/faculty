@@ -23,12 +23,12 @@ class New_colleague extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('New_colleague');
         } else {
-            $c_name = $this->input->post('c_name');
-            $school_id = $this->input->post('school_id');
-            $department_id = $this->input->post('dept_id');
-            $position = $this->input->post('position');
-            $sponsors = $this->input->post('sponsors');
-            $fac_id = $this->session->userdata('fac_id');
+            $c_name = htmlspecialchars($this->input->post('c_name'));
+            $school_id = htmlspecialchars($this->input->post('school_id'));
+            $department_id = htmlspecialchars($this->input->post('dept_id'));
+            $position = htmlspecialchars($this->input->post('position'));
+            $sponsors = htmlspecialchars($this->input->post('sponsors'));
+            $fac_id = htmlspecialchars($this->session->userdata('fac_id'));
 
             $this->db->query("insert into colleagues (fac_id,c_name,school_id,department_id,position,sponsors) "
                     . "VALUES ('$fac_id','$c_name','$school_id','$department_id','$position','$sponsors') ");

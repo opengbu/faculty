@@ -23,12 +23,12 @@ class New_conference extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('New_conference');
         } else {
-            $title = $this->input->post('title');
-            $other_details = $this->input->post('other_details');
-            $school_id = $this->input->post('school_id');
-            $department_id = $this->input->post('dept_id');
-            $funding_agency = $this->input->post('funding_agency');
-            $participants = $this->input->post('participants');
+            $title = htmlspecialchars($this->input->post('title'));
+            $other_details = htmlspecialchars($this->input->post('other_details'));
+            $school_id = htmlspecialchars($this->input->post('school_id'));
+            $department_id = htmlspecialchars($this->input->post('dept_id'));
+            $funding_agency = htmlspecialchars($this->input->post('funding_agency'));
+            $participants = htmlspecialchars($this->input->post('participants'));
 
             $fac_id = $this->session->userdata('fac_id');
 

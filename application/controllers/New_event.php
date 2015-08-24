@@ -23,10 +23,10 @@ class New_event extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('New_event');
         } else {
-            $name = $this->input->post('name');
-            $other_details = $this->input->post('other_details');
+            $name = htmlspecialchars($this->input->post('name'));
+            $other_details = htmlspecialchars($this->input->post('other_details'));
             
-            $fac_id = $this->session->userdata('fac_id');
+            $fac_id = htmlspecialchars($this->session->userdata('fac_id'));
 
             $this->db->query("insert into events (fac_id,name,other_details) VALUES ('$fac_id','$name','$other_details') ");
 

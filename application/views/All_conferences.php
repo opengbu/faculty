@@ -7,9 +7,9 @@ error_reporting(E_ERROR);
 ?>
 <div class="row">
 
-    <div class ="col-sm-10">
+    <div class ="col-sm-9">
         <?php
-        if ($this->input->get('fac_id_e') != NULL || $this->input->get('fac_id_e') != "")
+        if ($this->input->get('fac_id_e') != NULL && $this->input->get('fac_id_e') != "")
             $fac_id = $this->input->get('fac_id_e');
         else
             $fac_id = $this->session->userdata('fac_id');
@@ -66,7 +66,7 @@ error_reporting(E_ERROR);
                         </div>
                         <div class="col-sm-2">
                             <?php
-                            echo $row->title;
+                            echo html_purify(htmlspecialchars_decode($row->title));
                             ?>
                         </div>
 
@@ -77,19 +77,19 @@ error_reporting(E_ERROR);
                         </div>
                         <div class="col-sm-2">
                             <?php
-                            echo $row->funding_agency;
+                            echo html_purify(htmlspecialchars_decode($row->funding_agency));
                             ?>
                         </div>
 
                         <div class="col-sm-2">
                             <?php
-                            echo $row->other_details;
+                            echo html_purify(htmlspecialchars_decode($row->other_details));
                             ?>
                         </div>
 
                         <div class="col-sm-2">
                             <?php
-                            echo $row->participants;
+                            echo html_purify(htmlspecialchars_decode($row->participants));
                             ?>
                         </div>
                     </div>

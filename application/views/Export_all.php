@@ -174,7 +174,7 @@ error_reporting(E_ERROR);
                         </div>
                         <div class="col-sm-4">
                             <?php
-                            echo $row->name;
+                            echo html_purify(htmlspecialchars_decode($row->name));
                             ?>
                         </div>
 
@@ -185,7 +185,7 @@ error_reporting(E_ERROR);
                         </div>
                         <div class="col-sm-4">
                             <?php
-                            echo $row->other_details;
+                            echo html_purify(htmlspecialchars_decode($row->other_details));
                             ?>
                         </div>
                     </div>
@@ -270,13 +270,13 @@ error_reporting(E_ERROR);
 
                         <div class="col-sm-2">
                             <?php
-                            echo $row->other_details;
+                            echo html_purify(htmlspecialchars_decode($row->other_details));
                             ?>
                         </div>
 
                         <div class="col-sm-2">
                             <?php
-                            echo $row->participants;
+                            echo html_purify(htmlspecialchars_decode($row->participants));
                             ?>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
 error_reporting(E_ERROR);
 ?>
 <div class="row">
-    <div class ="col-sm-10">
+    <div class ="col-sm-9">
         <?php
         if ($this->input->get('fac_id_e') != NULL || $this->input->get('fac_id_e') != "")
             $fac_id = $this->input->get('fac_id_e');
