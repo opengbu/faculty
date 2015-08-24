@@ -11,11 +11,26 @@ $fac_q = $this->db->query("select sum(monographs) as sum_mono, sum(chapters_in_b
         . " from faculty where department_id = '$department_id' ");
 $fac = $fac_q->row();
 error_reporting(E_ERROR);
+
+$dep_name_q = $this->db->query("select department from departments where id='$department_id'");
+$dep_name = $dep_name_q->row();
 ?>
+<style>
+    h2{
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    h3{
+        padding: 0px;
+        margin: 0px;
+    }
+</style>
 <br /><br />
 <div class="row" >
-    <div class = "col-sm-10" >
-
+    <div class = "col-sm-12" >
+        <h2 class="text-center">  <?= $dep_name->department ?> </h2>
+        <br />
         <ul class="nav nav-list col-sm-12"> 
 
             <li class="list-group-item">
@@ -132,12 +147,13 @@ error_reporting(E_ERROR);
     </div>
 </div>
 <br /><br />
+<h3>  Events Organized </h3>
 <div class="row">
 
-    <div class ="col-sm-10">
+    <div class ="col-sm-12">
         <?php
         $count = 0;
-        $query = $this->db->query("select events.*,faculty.fac_id  from events, faculty where faculty.fac_id = events.fac_id and faculty.department_id = '$department_id'");
+        $query = $this->db->query("select events.*,faculty.fac_id,faculty.name as fac_name   from events, faculty where faculty.fac_id = events.fac_id and faculty.department_id = '$department_id'");
         ?>
 
         <ul class="nav nav-list col-sm-12">
@@ -180,7 +196,7 @@ error_reporting(E_ERROR);
 
                         <div class="col-sm-3">
                             <?php
-                            echo $this->session->userdata('name');
+                            echo $row->fac_name;
                             ?>
                         </div>
                         <div class="col-sm-4">
@@ -196,9 +212,10 @@ error_reporting(E_ERROR);
     </div>
 </div>
 <br /><br />
+<h3>Research conferences Organized </h3>
 <div class="row">
 
-    <div class ="col-sm-10">
+    <div class ="col-sm-12">
         <?php
         $query = $this->db->query("select research_conferences.* from research_conferences,faculty where "
                 . " faculty.fac_id = research_conferences.fac_id and faculty.department_id = '$department_id' ");
@@ -288,8 +305,9 @@ error_reporting(E_ERROR);
     </div>
 </div>
 <br /><br />
+<h3>Post Doctoral Fellows </h3>
 <div class="row">
-    <div class ="col-sm-10">
+    <div class ="col-sm-12">
         <?php
         $count = 0;
         $query = $this->db->query("select colleagues.* from colleagues ,faculty where "
@@ -361,12 +379,13 @@ error_reporting(E_ERROR);
     </div>
 </div>
 <br /><br />
+<h3>  Consultancy Projects </h3>
 <div class="row">
 
-    <div class ="col-sm-10">
+    <div class ="col-sm-12">
         <?php
         $count = 0;
-        $query = $this->db->query("select consultancy_projects.* from consultancy_projects,faculty where "
+        $query = $this->db->query("select consultancy_projects.*,faculty.name as fac_name from consultancy_projects,faculty where "
                 . " faculty.fac_id = consultancy_projects.fac_id and faculty.department_id = '$department_id'");
         ?>
 
@@ -408,7 +427,7 @@ error_reporting(E_ERROR);
                         </div>
                         <div class="col-sm-2">
                             <?php
-                            echo $this->session->userdata('name');
+                            echo $row->fac_name;
                             ?>
                         </div>
 
