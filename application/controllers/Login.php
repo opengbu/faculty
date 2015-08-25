@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,8 +15,6 @@ class Login extends CI_Controller {
     }
 
     function using_email() {
-        if ($this->session->userdata('loggedin') == 1)
-            redirect('edit_info');
         $code = $this->input->get('code');
         if ($code == NULL || $code == "") {
             echo 'invalid link';
@@ -41,6 +38,29 @@ class Login extends CI_Controller {
         $this->session->set_userdata('fac_id', $details_r->fac_id);
 
         redirect('edit_info');
+    }
+
+    function admin_login($msg = 0) {
+        ?>
+        <form action="<?= base_url('login/admin_validate') ?>" method="post">
+            <input type="password" name="password" />
+            <input type="submit" value="Go" required="required"/>
+        </form>
+        <?php
+        if ($msg == -1)
+            echo 'invalid password';
+    }
+
+    function admin_validate() {
+        $password = $this->input->post('password');
+        $this->load->library('bcrypt');
+        $hash = '$2a$08$PLUHNjYue4zzoIUIeWDRYuaMDGepQ4rE/dcqzwJq4hhcbRlQPffga';
+        if ($this->bcrypt->check_password($password, $hash)) {
+            $this->session->set_userdata('naac_admin', '1');
+            redirect(base_url());
+        } else {
+            
+        }
     }
 
 }

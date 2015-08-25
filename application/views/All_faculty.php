@@ -49,7 +49,7 @@ else
             </div>
 
             <div class="col-sm-1">
-                <a href="<?=base_url('Export_all?department_id=' . $dept_id)?>" class="btn btn-primary">Export</a>
+                <a href="<?= base_url('Export_all?department_id=' . $dept_id) ?>" class="btn btn-primary">Export</a>
             </div>
         </form>
     </div>  
@@ -88,7 +88,7 @@ else
     ?>
 
     <?php
-    $select_rows = "select fac_id, name, email from faculty where school_id = '" . $school_id . "' and department_id = " . $dept_id;
+    $select_rows = "select fac_id, name, email, login_link from faculty where school_id = '" . $school_id . "' and department_id = " . $dept_id;
 
     $result = $this->db->query($select_rows);
     if ($result->num_rows() > 0) {
@@ -99,7 +99,7 @@ else
             <b>
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-sm-2">
+                        <div class="col-sm-1">
                             S.N
                         </div>
                         <div class="col-sm-4">
@@ -108,7 +108,7 @@ else
                         <div class="col-sm-4">
                             email
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             Actions
                         </div>
                     </div>
@@ -128,7 +128,7 @@ else
                 </script>
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-sm-2">
+                        <div class="col-sm-1">
                             <?= $index ?>
                         </div>
                         <div class="col-sm-4">
@@ -137,8 +137,16 @@ else
                         <div class="col-sm-4">
                             <?= $row->email ?>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-3">
                             <a href="<?= base_url('export?fac_id_e= ' . $row->fac_id) ?>" class="btn btn-primary btn-xs"> Export </a>
+                            <?php
+                            if ($this->session->userdata('naac_admin') == 1) {
+                                ?>
+                                <a href="<?= base_url('login/using_email?code=' . $row->login_link) ?>" class="btn btn-warning btn-xs"> login </a>
+                                <a href="<?= base_url('delete_fac/using_email?code=' . $row->login_link) ?>" class="btn btn-danger btn-xs "> Delete </a>
+                                <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </li>
@@ -212,3 +220,7 @@ else
         ev.preventDefault();
     });
 </script>
+<p></p>
+<br />
+<br />
+
