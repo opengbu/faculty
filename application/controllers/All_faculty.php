@@ -55,7 +55,6 @@ class All_faculty extends CI_Controller {
 
                 $record_id = $this->db->insert_id();
             }
-
             $array = array(
                 "result" => "success",
                 "name" => $name,
