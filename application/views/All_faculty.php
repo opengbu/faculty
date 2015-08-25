@@ -9,7 +9,14 @@ if ($this->input->get('dept_id') != NULL)
 else
     $dept_id = "NULL";
 ?>
-
+<script>
+    function del_ask(str, n)
+    {
+        var x = confirm("Do you want to delete " + n + "?");
+        if (x == true)
+            location.href = "delete_fac/using_email?code=" + str;
+    }
+</script>
 <div class="col-sm-12">
     <br /><br />
     <div class="row">
@@ -143,7 +150,7 @@ else
                             if ($this->session->userdata('naac_admin') == 1) {
                                 ?>
                                 <a href="<?= base_url('login/using_email?code=' . $row->login_link) ?>" class="btn btn-warning btn-xs"> login </a>
-                                <a href="<?= base_url('delete_fac/using_email?code=' . $row->login_link) ?>" class="btn btn-danger btn-xs "> Delete </a>
+                                <a onclick="del_ask('<?php echo$row->login_link?>','<?php echo$row->name?>')" class="btn btn-danger btn-xs "> Delete </a>
                                 <?php
                             }
                             ?>

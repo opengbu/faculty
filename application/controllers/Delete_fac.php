@@ -26,6 +26,7 @@ class Delete_fac extends CI_Controller {
         $this->db->query("delete from consultancy_projects where fac_id = '$fac_id' ");
         $this->db->query("delete from colleagues where fac_id = '$fac_id' ");
         $this->db->query("delete from faculty where fac_id = '$fac_id' ");
+        redirect(base_url());
     }
 
 }
