@@ -5,6 +5,14 @@
  */
 error_reporting(E_ERROR);
 ?>
+<script>
+    function del_ask(string, id)
+    {
+        var x = confirm("Do you want to delete " + string + "?");
+        if (x == true)
+            location.href = "delete_colleague?colleague_id=" + id;
+    }
+</script>
 <div class="row">
     <div class ="col-sm-9">
         <?php
@@ -24,7 +32,7 @@ error_reporting(E_ERROR);
                         <div class="col-sm-1">
                             S.N.
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             Colleague Name
                         </div>
 
@@ -32,8 +40,11 @@ error_reporting(E_ERROR);
                             Sponsoring Agency
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             School & Department
+                        </div>
+                        <div class="col-sm-2">
+                            Actions
                         </div>
                     </b>
                 </div>
@@ -56,7 +67,7 @@ error_reporting(E_ERROR);
                             echo $count;
                             ?>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <?php
                             echo $row->c_name;
                             ?>
@@ -68,10 +79,17 @@ error_reporting(E_ERROR);
                             ?>
                         </div>
 
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <?php
                             echo $school_details->school_name . ' / ' . $dept_details->department;
                             ?>
+                        </div>
+                        <div class="col-sm-2">
+
+                            <a href="<?= base_url('edit_colleague?colleague_id=' . $row->id) ?>" 
+                               class="btn btn-xs btn-warning" > Edit </a>
+                            <a onclick="del_ask('<?= $row->c_name ?>', '<?= $row->id ?>')"" 
+                               class="btn btn-xs btn-danger" > Delete </a>
                         </div>
                     </div>
                 </li>
