@@ -36,7 +36,7 @@ error_reporting(E_ERROR);
                             Colleague Name
                         </div>
 
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             Sponsoring Agency
                         </div>
 
@@ -79,7 +79,7 @@ error_reporting(E_ERROR);
                             ?>
                         </div>
 
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <?php
                             echo $school_details->school_name . ' / ' . $dept_details->department;
                             ?>

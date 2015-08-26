@@ -5,6 +5,14 @@
  */
 error_reporting(E_ERROR);
 ?>
+<script>
+    function del_ask(string, id)
+    {
+        var x = confirm("Do you want to delete " + string + "?");
+        if (x == true)
+            location.href = "delete_conference?conference_id=" + id;
+    }
+</script>
 <div class="row">
 
     <div class ="col-sm-9">
@@ -22,14 +30,11 @@ error_reporting(E_ERROR);
                 <div class="row">
 
                     <b>
-                        <div class="col-sm-1">
-                            S.N.
-                        </div>
                         <div class="col-sm-2">
                             Title of research Conference
                         </div>
 
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             School_department
                         </div>
                         <div class="col-sm-2">
@@ -42,6 +47,9 @@ error_reporting(E_ERROR);
 
                         <div class="col-sm-2">
                             Name of outstanding participants
+                        </div>
+                        <div class="col-sm-2">
+                            Actions
                         </div>
                     </b>
                 </div>
@@ -59,18 +67,14 @@ error_reporting(E_ERROR);
                 ?>
                 <li class="list-group-item">
                     <div class="row">
-                        <div class="col-sm-1">
-                            <?php
-                            echo $count;
-                            ?>
-                        </div>
+                        
                         <div class="col-sm-2">
                             <?php
                             echo html_purify(htmlspecialchars_decode($row->title));
                             ?>
                         </div>
 
-                        <div class="col-sm-3">
+                        <div class="col-sm-2">
                             <?php
                             echo $school_details->school_name . ' / ' . $dept_details->department;
                             ?>
@@ -91,6 +95,13 @@ error_reporting(E_ERROR);
                             <?php
                             echo html_purify(htmlspecialchars_decode($row->participants));
                             ?>
+                        </div>
+                        <div class="col-sm-2">
+
+                            <a href="<?= base_url('edit_conference?conference_id=' . $row->id) ?>" 
+                               class="btn btn-xs btn-warning" > Edit </a>
+                            <a onclick="del_ask('<?= $row->title ?>', '<?= $row->id ?>')"" 
+                               class="btn btn-xs btn-danger" > Delete </a>
                         </div>
                     </div>
                 </li>
