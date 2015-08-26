@@ -8,11 +8,15 @@
 class Logout extends CI_Controller {
 
     function index() {
-        $adm = 0;
-        if ($this->session->userdata('naac_admin') == 1)
-            $adm = 1;
+        if ($this->session->userdata('naac_admin') == 1) {
+            $this->session->set_userdata('loggedin', 0);
+        } else
+            $this->session->sess_destroy();
+        redirect(base_url());
+    }
+
+    function admin() {
         $this->session->sess_destroy();
-        $this->session->set_userdata('naac_admin', $adm);
         redirect(base_url());
     }
 

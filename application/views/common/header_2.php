@@ -21,7 +21,28 @@
         <script type="text/javascript" src="<?php echo base_url() . 'application/views/common/' . 'dist/js/bootstrap-select.js' ?>"></script>
         <script type="text/javascript" src="<?php echo base_url() . 'application/views/common/' . 'js/bootstrap.min.js' ?>"></script>
         <script type="text/javascript" src="<?php echo base_url() . 'application/views/common/' . 'js/type-ahead.js' ?>"></script>
+        
+        <style>
+            .navbar-nav.navbar-right:last-child {
+                margin-right: 0;
+            }
+            .caret-up {
+                width: 0; 
+                height: 0; 
+                border-left: 4px solid rgba(0, 0, 0, 0);
+                border-right: 4px solid rgba(0, 0, 0, 0);
+                border-bottom: 4px solid;
 
+                display: inline-block;
+                margin-left: 2px;
+                vertical-align: middle;
+            }
+
+            #getFixed {
+                width: 234px;
+            }
+        </style>
+        
     </head>
     <body style="background-image: url(<?php echo base_url('application/views/common/background_2.jpg')  ?>); background-attachment: fixed; background-repeat: repeat;">
         <div class="container" style="padding-top: 0px;">

@@ -17,14 +17,72 @@ else
             location.href = "delete_fac/using_email?code=" + str;
     }
 </script>
-<div class="col-sm-12">
-    <br /><br />
-    <div class="row">
-        <form>
-            <div class="col-sm-4">
+<br /><br />
+<nav class="navbar navbar-fixed-top navbar-default nav navbar-custom" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
 
-                <select class="selectpicker" data-size="5" data-dropup-auto="false" data-live-search="true" onchange="this.form.submit()" name="school_id" data-width="100%">        
-                    <option value="-1"> Select School </option>
+        <button type="button" class="navbar-toggle collapsed pull-left" style="margin-left: 0; " data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="<?= base_url() ?>">GBU Faculty</a>
+
+    </div> 
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <?php
+            if ($this->session->userdata('loggedin') == 1) {
+                ?>
+                <li> 
+                    <a href="<?= base_url() . 'edit_user/index/' . $this->session->userdata('fac_id') ?>">Welcome <?= $this->session->userdata('name') ?>!</a>
+                </li>
+                <li>
+                    <a href="<?= base_url() . 'logout' ?>">Log out</a>
+                </li>
+                <?php
+            }
+            if ($this->session->userdata('naac_admin') == 1) {
+                ?>
+                <li> 
+                    <a href="<?= base_url() . 'logout/admin' ?>">Admin Log out</a>
+                </li>
+                <?php
+            } else {
+                ?>
+
+                <li> 
+                    <a href="<?= base_url() . 'login/admin_login/' ?>">Admin Login</a>
+
+                </li>
+                <?php
+            }
+            ?>
+        </ul>
+    </div>
+</nav>
+
+<div class = "col-sm-12">
+
+    <br /><br />
+    <div class = "row">
+        <form>
+            <div class = "col-sm-4">
+
+                <select class = "selectpicker" data-size = "5" data-dropup-auto = "false" data-live-search = "true" onchange = "this.form.submit()" name = "school_id" data-width = "100%">
+                    <option value = "-1"> Select School </option>
                     <?php
                     $q = $this->db->query("select id, school_name from schools");
                     foreach ($q->result() as $row) {
@@ -150,7 +208,7 @@ else
                             if ($this->session->userdata('naac_admin') == 1) {
                                 ?>
                                 <a href="<?= base_url('login/using_email?code=' . $row->login_link) ?>" class="btn btn-warning btn-xs"> login </a>
-                                <a onclick="del_ask('<?php echo$row->login_link?>','<?php echo$row->name?>')" class="btn btn-danger btn-xs "> Delete </a>
+                                <a onclick="del_ask('<?php echo$row->login_link ?>', '<?php echo$row->name ?>')" class="btn btn-danger btn-xs "> Delete </a>
                                 <?php
                             }
                             ?>

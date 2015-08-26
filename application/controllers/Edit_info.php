@@ -44,7 +44,8 @@ class Edit_info extends CI_Controller {
             $id = $this->session->userdata('fac_id');
             
             $this->db->query("update faculty set name='$name', email='$email',  monographs = '$monographs' , chapters_in_books='$chapters_in_books', national_db='$national_db', international_db='$international_db', "
-                    . "citation_min='$citation_min', citation_max='$citation_max', citation_avg='$citation_avg', snip='$snip', "
+                    . "citation_min='$citation_min', books_with_isbn='$books_with_isbn' ,"
+                    . "  citation_max='$citation_max', citation_avg='$citation_avg', snip='$snip', "
                     . " sjr='$sjr', impact_min='$impact_min', impact_max='$impact_max', h_index='$h_index', impact_avg='$impact_avg' "
                     . " where fac_id = '$id' ");
 
