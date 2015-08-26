@@ -114,7 +114,7 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li> 
-                            <a href="<?= base_url() . 'edit_user/index/' . $this->session->userdata('fac_id') ?>">Welcome <?= $this->session->userdata('name') ?>!</a>
+                            <a href="<?= base_url() . 'edit_info' ?>">Welcome <?= $this->session->userdata('name') ?>!</a>
                         </li>
                         <li>
                             <a href="<?= base_url() . 'logout' ?>">Log out</a>
