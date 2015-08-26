@@ -4,6 +4,14 @@
  *  Author     :Varun Garg <varun.10@live.com>
  */
 ?>
+<script>
+    function del_ask(string, id)
+    {
+        var x = confirm("Do you want to delete " + string + "?");
+        if (x == true)
+            location.href = "delete_event?event_id=" + id;
+    }
+</script>
 <div class="row">
 
     <div class ="col-sm-9">
@@ -25,16 +33,17 @@
                         <div class="col-sm-1">
                             S.N.
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             Event Name
                         </div>
 
                         <div class="col-sm-3">
                             Organized By
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             Other Details
                         </div>
+                        <div class="col-sm-2">Actions</div>
                     </b>
                 </div>
             </li>
@@ -49,7 +58,7 @@
                             echo $count;
                             ?>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <?php
                             echo html_purify(htmlspecialchars_decode($row->name));
                             ?>
@@ -60,10 +69,17 @@
                             echo $this->session->userdata('name');
                             ?>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <?php
                             echo html_purify(htmlspecialchars_decode($row->other_details));
                             ?>
+                        </div>
+                        
+                        <div class="col-sm-2">
+                            <a href="<?=base_url('edit_event?event_id='.$row->id)?>" 
+                               class="btn btn-xs btn-warning" > Edit </a>
+                            <a onclick="del_ask('<?=$row->name?>','<?=$row->id?>')"" 
+                               class="btn btn-xs btn-danger" > Delete </a>
                         </div>
                     </div>
                 </li>
