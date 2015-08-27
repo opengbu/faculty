@@ -18,10 +18,7 @@
         <?php
         
         error_reporting(E_ERROR);
-        if ($this->input->get('fac_id_e') != NULL && $this->input->get('fac_id_e') != "")
-            $fac_id = $this->input->get('fac_id_e');
-        else
-            $fac_id = $this->session->userdata('fac_id');
+       $fac_id = $this->session->userdata('fac_id');
         $count = 0;
         $query = $this->db->query("select * from consultancy_projects where fac_id = '$fac_id'");
         ?>

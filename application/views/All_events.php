@@ -17,10 +17,7 @@
     <div class ="col-sm-9">
         <?php
         error_reporting(E_ERROR);
-        if ($this->input->get('fac_id_e') != NULL && $this->input->get('fac_id_e') != "")
-            $fac_id = $this->input->get('fac_id_e');
-        else
-            $fac_id = $this->session->userdata('fac_id');
+        $fac_id = $this->session->userdata('fac_id');
         $count = 0;
         $query = $this->db->query("select * from events where fac_id = '$fac_id'");
         ?>
@@ -74,11 +71,11 @@
                             echo html_purify(htmlspecialchars_decode($row->other_details));
                             ?>
                         </div>
-                        
+
                         <div class="col-sm-2">
-                            <a href="<?=base_url('edit_event?event_id='.$row->id)?>" 
+                            <a href="<?= base_url('edit_event?event_id=' . $row->id) ?>" 
                                class="btn btn-xs btn-warning" > Edit </a>
-                            <a onclick="del_ask('<?=$row->name?>','<?=$row->id?>')"" 
+                            <a onclick="del_ask('<?= $row->name ?>', '<?= $row->id ?>')"" 
                                class="btn btn-xs btn-danger" > Delete </a>
                         </div>
                     </div>

@@ -17,10 +17,7 @@ error_reporting(E_ERROR);
 
     <div class ="col-sm-9">
         <?php
-        if ($this->input->get('fac_id_e') != NULL && $this->input->get('fac_id_e') != "")
-            $fac_id = $this->input->get('fac_id_e');
-        else
-            $fac_id = $this->session->userdata('fac_id');
+        $fac_id = $this->session->userdata('fac_id');
         $count = 0;
         $query = $this->db->query("select * from research_conferences where fac_id = '$fac_id'");
         ?>
@@ -67,7 +64,7 @@ error_reporting(E_ERROR);
                 ?>
                 <li class="list-group-item">
                     <div class="row">
-                        
+
                         <div class="col-sm-2">
                             <?php
                             echo html_purify(htmlspecialchars_decode($row->title));
